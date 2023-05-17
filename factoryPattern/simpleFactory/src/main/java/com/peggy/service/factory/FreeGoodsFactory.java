@@ -11,10 +11,11 @@ import com.peggy.service.impl.YouKuMemberFreeGoods;
  * 生成免费商品
  **/
 public class FreeGoodsFactory {
+    private static IFreeGoods iFreeGoods = null;
 
     //通过商品请求类型返回指定商品
     public static IFreeGoods getInstance(Integer awardType) {
-        IFreeGoods iFreeGoods = null;
+
         if (awardType == 1) { //打折券
             iFreeGoods = new DiscountFreeGoods();
         }
