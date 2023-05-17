@@ -3,6 +3,7 @@ package com.peggy.response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
  * @Author Peggy
@@ -11,10 +12,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Accessors(chain = true)
 public class ResponseResult<T> {
 
-    Integer code;
-    String message;
-    T data;
+    private Integer code;
+    private String message;
+    private T data;
 
+    public static ResponseResult fail(String message) {
+        return new ResponseResult().setCode(400).setMessage(message);
+    }
 }
