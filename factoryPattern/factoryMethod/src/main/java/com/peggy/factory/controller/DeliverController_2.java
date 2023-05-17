@@ -30,7 +30,7 @@ public class DeliverController_2 {
     public ResponseResult awardToUser(AwardInfo awardInfo) {
 
         //按照不同的类型获取对应工厂
-        FreeGoodsFactoryMap.getPareserFactory(awardInfo.getAwardTypes());
+        freeGoodsFactory = FreeGoodsFactoryMap.getPareserFactory(awardInfo.getAwardTypes());
 
         IFreeGoods freeGoods = freeGoodsFactory.getInstance();
         System.out.println("===== 工厂方法模式 ========");

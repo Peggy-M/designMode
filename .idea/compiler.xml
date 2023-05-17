@@ -7,9 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="noFactory" />
         <module name="internal-common" />
+        <module name="factoryMethod" />
         <module name="simpleFactory" />
+        <module name="abstractFactory" />
+        <module name="noFactory" />
       </profile>
     </annotationProcessing>
   </component>

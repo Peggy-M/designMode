@@ -15,6 +15,7 @@
     <modules>
         <module>simpleFactory</module>
         <module>factoryMethod</module>
+        <module>abstractFactory</module>
     </modules>
 
     <properties>
