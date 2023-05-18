@@ -13,6 +13,7 @@
         <module>factoryPattern</module>
         <module>factoryPattern/noFactory</module>
         <module>factoryPattern/internal-common</module>
+        <module>builderPattern</module>
     </modules>
 
     <properties>

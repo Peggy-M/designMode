@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/builderPattern/builderPatternOne/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/builderPattern/builderPatternOne/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/builderPattern/builderPatternTwo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/builderPattern/builderPatternTwo/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/builderPattern/internal-common-buider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/builderPattern/internal-common-buider/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/builderPattern/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/builderPattern/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/factoryPattern/abstractFactory/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/factoryPattern/abstractFactory/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/factoryPattern/builderPatternTwo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/factoryPattern/builderPatternTwo/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/factoryPattern/factoryMethod/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/factoryPattern/factoryMethod/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/factoryPattern/internal-common/src/main/java" charset="UTF-8" />
