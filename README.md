@@ -231,3 +231,99 @@ Builder是抽象建造者， MobikeBuilder和HelloBuilder是具体的建造者�
 
 > 不可变对象: 对象创建好了,就不能再修改内部的属性值,下面的client类
 > 就是典型的不可变对象,创建好的连接对象不能再改动  
+
+构建者方式实现
+
+建造者使用步骤如下:
+
+1. 目标类的构造方法要传入Builder对象
+2. Builder建造者类位于目标类内部,并且使用static修饰
+3. Builder建造者对象提供内置的各种set方法,注意set方法返回的是builder对象本身  
+4. Builder建造者类提供build()方法实现目标对象的创建  
+
+~~~ java
+public class 目标类{
+    //目标类的构造方法需要传入Builder对象
+    public 目标类(Builder builder){
+        
+    } 
+    public 返回值 业务方法(参数列表){
+        
+    } 
+    //Builder建造者类位于目标类内部,并且使用static修
+    public static class Builder(){
+        //Builder建造者对象提供内置的各种set方法,注意set方法返回的是builder对象本身
+        private String xxx;
+        public Builder setXxx(String xxx){
+            this.xxx = xxx;
+            return this;
+        } 
+        //Builder建造者类提供build()方法实现目标对象的创建
+        public 目标类 build(){
+            //校验
+            return new 目标类(this)；
+        }
+    }
+}
+~~~
+
+
+
+~~~ JAVA
+/**
+ * @Author Peggy
+ * @Date 2023-05-18 15:25
+ * 建造者模式
+ **/
+public class RabbitMQClient {
+    //私有构造方法
+    private RabbitMQClient(Builder builder) {}
+
+    @Data
+    @Accessors(chain = true)
+    public static class Builder {
+        //属性密闭性,保证对象不可变
+        private String host = "127.0.0.1";
+        private int port = 5672;
+        private int mode;
+        private String exchange;
+        private String queue;
+        private boolean isDurable = true;
+        int connectionTimeout = 1000;
+
+        //返回构建好的复杂对象
+        public RabbitMQClient build() {
+            //首先进行校验
+            if (mode == 1) { //工作队列模式不需要设计交换机,但队列名一定要有
+                if (exchange != null) {
+                    throw new RuntimeException("工作队列模式不需要交换机");
+                }
+                if (queue == null || queue.trim().equals("")) {
+                    throw new RuntimeException("工作队列模式名不能为空");
+                }
+                if (isDurable == false) {
+                    throw new RuntimeException("工作队列模式必须开启持久化");
+                }
+            } else if (mode == 2) { //路由模式必须设计交换机,但是不能设计队列
+                if (exchange == null) {
+                    throw new RuntimeException("路由模式下必须设置交换机");
+                }
+                if (queue != null) {
+                    throw new RuntimeException("路由模式无须设计队列名称");
+                }
+            }
+            return new RabbitMQClient(this);
+        }
+    }
+    public void sendMessage(String msg) {
+        System.out.println("发送消息......");
+    }
+}
+~~~
+
+所以总的来说，构建者模式其实是解决了两方面的主要问题
+
+1. 由于如果对外不开放其 set 方法，在通过有构造创建对象的时候，参数过多就可能会出现参数的混乱
+2. 当对外开放其 set 方法就有可能出现一些对象当前的空状态无效的情况，无法在进行传参的时候进行拦截
+
+但是如果使用期构建者模式-将其 set 方法封装在静态内部类当中，内部类的 build 方法其传入的状态值进行校验，返回其目标对象的创建。
