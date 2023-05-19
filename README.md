@@ -400,3 +400,102 @@ public class RabbitMQClient {
 ​	需要注意的一点就是，如果要使得一个克隆对象的 Java 类支持被克隆复制，那么改克隆的对象类就必须实现一个表示接口 Cloenable ，用来表示该 Java 类支持被复制。
 
 ​	Cloenable 接口就是上面原型模式角色当中的抽象接口原型 (Prototype) ，而其被克隆的对象类就是具体原型类 (ConcretePrototype) ，而用户端（Client）调用需要克隆的原型类中的方法 clone() 生成其原型对象。 
+
+~~~ java
+/**
+ * @Author Peggy
+ * @Date 2023-05-19 10:54
+ * 克隆对象 A
+ **/
+public class ConcretePrototypeA implements Cloneable {
+
+    public User user = new User();
+
+    public ConcretePrototypeA() {
+        System.out.println("具体原型对象创建完成");
+        user.setName("卡卡罗特");
+        user.setAge(18);
+    }
+
+    @Override
+    public ConcretePrototypeA clone() throws CloneNotSupportedException {
+        System.out.println("具体原型对象复制成功");
+        return (ConcretePrototypeA) super.clone();
+    }
+}
+~~~
+
+
+
+~~~ java
+    @Test
+    public void testCloen1() throws CloneNotSupportedException {
+        ConcretePrototypeA c1 = new ConcretePrototypeA();
+        c1.setUser(new User("卡卡罗特", 18));
+
+        ConcretePrototypeA c2 = c1.clone();
+        c2.user.setName("贝吉塔");
+        c2.user.setAge(19);
+
+        System.out.println("对象 c1 和 c2 是用一个对象？" + (c1 == c2));
+
+        System.out.println("对象 c1 和 c2 内部的 user 是同一个对象？" + (c1.user == c2.user));
+        System.out.println("对象 c1.user "+c1.getUser());
+        System.out.println("对象 c2.user "+c2.getUser());
+    }
+~~~
+
+> 具体原型对象创建完成
+> 具体原型对象复制成功
+> 对象 c1 和 c2 是用一个对象？false
+> 对象 c1 和 c2 内部的 user 是同一个对象？true
+> 对象 c1.user User(name=贝吉塔, age=19)
+> 对象 c2.user User(name=贝吉塔, age=19)
+
+可以看到浅拷贝中的对象是指向的同一个引用。
+
+如果有需求场景中不允许共享同一对象，那么就需要使用深拷贝，如果想要进行深拷贝需要使用到对象序列化流 (对象序列化之后,再进行反序列化获取到的是不同对象)。
+
+~~~ java
+@Test
+    public void testCloen2() throws Exception {
+
+        ConcretePrototypeA c1 = new ConcretePrototypeA();
+
+        c1.setUser(new User("卡卡罗特", 18));
+
+        //创建序列化输出流
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("c.txt"));
+        //将 c1 写入到文件当中
+        oos.writeObject(c1);
+        oos.close();
+
+        //创建对象序列化输入流
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("c.txt"));
+        //读取对象
+        ConcretePrototypeA c2 = (ConcretePrototypeA) ois.readObject();
+        c2.user.setName("贝吉塔");
+        c2.user.setAge(19);
+
+        System.out.println("对象 c1 和 c2 是用一个对象？" + (c1 == c2));
+        System.out.println("对象 c1 和 c2 内部的 user 是同一个对象？" + (c1.user == c2.user));
+        System.out.println("对象 c1.user "+c1.getUser());
+        System.out.println("对象 c2.user "+c2.getUser());
+    }
+~~~
+
+> 具体原型对象创建完成
+> 具体原型对象复制成功
+> 对象 c1 和 c2 是用一个对象？false
+> 对象 c1 和 c2 内部的 user 是同一个对象？true
+> 对象 c1.user User(name=贝吉塔, age=19)
+> 对象 c2.user User(name=贝吉塔, age=19)
+
+利用 Cloenable 接口实现进行克隆有些许的麻烦，所以一般推荐使用 ApacheCommons与springframework 来实现对象原型的克隆
+
+- 浅克隆： BeanUtils.cloneBean(Objectobj);BeanUtils.copyProperties(S,T);
+- 深克隆： SerializationUtils.clone(T object);  
+
+BeanUtils 是利用反射原理获得所有类可见的属性和方法，然后复制到 target 类。 SerializationUtils.clone() 就是使用我们的前面讲的序列化实现深克隆，当然你要把要克隆的类实现Serialization 接口。  
+
+### 原型模式应用实例 
