@@ -1,38 +1,23 @@
 package com.peggy;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+
+import com.peggy.prototype.ConcretePrototypeA;
+import org.junit.Test;
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 /**
- * Unit test for simple App.
+ * 克隆对象测试
  */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
+public class AppTest {
+    @Test
+    public void testCloen1() throws CloneNotSupportedException {
+        ConcretePrototypeA c1 = new ConcretePrototypeA();
+        ConcretePrototypeA c2 = c1.clone();
+        System.out.println("对象 c1 和 c2 是用一个对象？" + (c1 == c2));
+        System.out.println("对象 c1 和 c2 内部的 user 是同一个对象？" + (c1.user == c2.user));
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+   
 }
