@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
  * @Filename: Mail
  * @Author: peggy
  * @Data:2023/5/20 0:18
- * @Description: 邮件类
+ * @Description: 邮件类实现 Cloneable
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Mail  {
+public class Mail implements Cloneable{
     //收件人
     private String receiver;
     //邮件名称
@@ -31,5 +31,10 @@ public class Mail  {
     public Mail(AdvTemplate advTemplate) {
         this.context = advTemplate.getAdvContext();
         this.subject = advTemplate.getAdvSubject();
+    }
+
+    @Override
+    public Mail clone() throws CloneNotSupportedException {
+        return (Mail) super.clone();
     }
 }

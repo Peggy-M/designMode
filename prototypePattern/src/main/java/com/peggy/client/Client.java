@@ -22,7 +22,7 @@ public class Client {
         System.out.println("标题: " + mail.getSubject() + "\t 收件人: " + mail.getReceiver() + "\t..发送成功!");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         //模拟邮件发送
         int i = 0;
         //把模板定义出来,数据是从数据库获取的
@@ -30,12 +30,13 @@ public class Client {
         mail.setTail("xxx银行版权所有");
         while (i < MAX_COUNT) {
             //下面是每封邮件不同的地方
-            mail.setAppellation(" 先生 (女士)");
+            Mail cloneMail = mail.clone();
+            cloneMail.setAppellation(" 先生 (女士)");
             Random random = new Random();
             int num = random.nextInt(9999999);
-            mail.setReceiver(num + "@" + "liuliuqiu.com");
+            cloneMail.setReceiver(num + "@" + "liuliuqiu.com");
             //发送 邮件
-            sendMail(mail);
+            sendMail(cloneMail);
             i++;
         }
     }
