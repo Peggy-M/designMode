@@ -1,6 +1,6 @@
 package com.peggy.prototype;
 
-import com.peggy.User;
+import com.peggy.dto.User;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @Date 2023-05-19 10:54
  * 克隆对象 A
  **/
-public class ConcretePrototypeA implements Cloneable, Serializable {
+public class ConcretePrototype implements Cloneable, Serializable {
 
     public User user;
 
@@ -21,14 +21,14 @@ public class ConcretePrototypeA implements Cloneable, Serializable {
         this.user = user;
     }
 
-    public ConcretePrototypeA() {
+    public ConcretePrototype() {
         System.out.println("具体原型对象创建完成");
     }
 
 
     @Override
-    public ConcretePrototypeA clone() throws CloneNotSupportedException {
+    public ConcretePrototype clone() throws CloneNotSupportedException {
         System.out.println("具体原型对象复制成功");
-        return (ConcretePrototypeA) super.clone();
+        return (ConcretePrototype) super.clone();
     }
 }

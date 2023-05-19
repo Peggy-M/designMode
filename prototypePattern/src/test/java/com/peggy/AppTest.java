@@ -1,7 +1,8 @@
 package com.peggy;
 
 
-import com.peggy.prototype.ConcretePrototypeA;
+import com.peggy.dto.User;
+import com.peggy.prototype.ConcretePrototype;
 import org.junit.Test;
 
 import java.io.FileInputStream;
@@ -15,10 +16,10 @@ import java.io.ObjectOutputStream;
 public class AppTest {
     @Test
     public void testCloen1() throws CloneNotSupportedException {
-        ConcretePrototypeA c1 = new ConcretePrototypeA();
+        ConcretePrototype c1 = new ConcretePrototype();
         c1.setUser(new User("卡卡罗特", 18));
 
-        ConcretePrototypeA c2 = c1.clone();
+        ConcretePrototype c2 = c1.clone();
         c2.user.setName("贝吉塔");
         c2.user.setAge(19);
 
@@ -32,7 +33,7 @@ public class AppTest {
     @Test
     public void testCloen2() throws Exception {
 
-        ConcretePrototypeA c1 = new ConcretePrototypeA();
+        ConcretePrototype c1 = new ConcretePrototype();
 
         c1.setUser(new User("卡卡罗特", 18));
 
@@ -45,7 +46,7 @@ public class AppTest {
         //创建对象序列化输入流
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream("c.txt"));
         //读取对象
-        ConcretePrototypeA c2 = (ConcretePrototypeA) ois.readObject();
+        ConcretePrototype c2 = (ConcretePrototype) ois.readObject();
         c2.user.setName("贝吉塔");
         c2.user.setAge(19);
 

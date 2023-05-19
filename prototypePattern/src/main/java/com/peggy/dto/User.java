@@ -1,4 +1,4 @@
-package com.peggy;
+package com.peggy.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
