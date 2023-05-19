@@ -10,16 +10,12 @@
         <module name="internal-common" />
         <module name="factoryMethod" />
         <module name="noFactory" />
+        <module name="prototypePattern" />
+        <module name="builderPatternTwo" />
         <module name="simpleFactory" />
         <module name="abstractFactory" />
         <module name="internal-common-buider" />
         <module name="builderPatternOne" />
-      </profile>
-      <profile name="Annotation profile for designMode" enabled="true">
-        <sourceOutputDir name="../../factoryPattern/builderPatternTwo/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../../factoryPattern/builderPatternTwo/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="builderPatternTwo" />
       </profile>
     </annotationProcessing>
   </component>

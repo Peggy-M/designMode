@@ -16,7 +16,6 @@
         <module>simpleFactory</module>
         <module>factoryMethod</module>
         <module>abstractFactory</module>
-        <module>builderPatternTwo</module>
     </modules>
 
     <properties>
