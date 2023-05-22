@@ -10,9 +10,9 @@
         <module name="internal-common" />
         <module name="factoryMethod" />
         <module name="noFactory" />
-        <module name="prototypePattern" />
         <module name="proxyPattern" />
         <module name="builderPatternTwo" />
+        <module name="cglibProxyPattern" />
         <module name="simpleFactory" />
         <module name="abstractFactory" />
         <module name="internal-common-buider" />

@@ -2,19 +2,22 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-<!--  <groupId>com.peggy</groupId>
+  <groupId>com.peggy</groupId>
   <artifactId>prototypePattern</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>-->
+  <packaging>pom</packaging>
   <parent>
     <groupId>com.peggy</groupId>
     <artifactId>designMode</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <name>prototypePattern</name>
+    <name>prototypePattern</name>
   <url>http://maven.apache.org</url>
+    <modules>
+        <module>cglibProxyPattern</module>
+    </modules>
 
-  <properties>
+    <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
