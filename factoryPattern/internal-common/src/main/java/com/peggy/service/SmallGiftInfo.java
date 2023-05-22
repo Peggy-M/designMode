@@ -1,4 +1,4 @@
-package com.peggy.dao;
+package com.peggy.service;
 
 import lombok.Data;
 

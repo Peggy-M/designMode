@@ -15,6 +15,9 @@
         <module>factoryPattern/internal-common</module>
         <module>builderPattern</module>
         <module>prototypePattern</module>
+        <module>prototypePattern</module>
+        <module>builderPattern/builderPatternTwo</module>
+        <module>proxyPattern</module>
     </modules>
 
     <properties>

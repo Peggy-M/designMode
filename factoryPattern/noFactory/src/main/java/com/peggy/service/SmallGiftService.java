@@ -1,7 +1,6 @@
 package com.peggy.service;
 
 import com.alibaba.fastjson.JSON;
-import com.peggy.dao.SmallGiftInfo;
 
 /**
  * @Author Peggy

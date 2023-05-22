@@ -1,7 +1,7 @@
 package com.peggy.control;
 
 import com.alibaba.fastjson.JSON;
-import com.peggy.dao.SmallGiftInfo;
+import com.peggy.service.SmallGiftInfo;
 import com.peggy.dto.DiscountResult;
 import com.peggy.response.AwardInfo;
 import com.peggy.service.DiscountService;
