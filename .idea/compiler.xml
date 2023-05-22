@@ -11,6 +11,7 @@
         <module name="factoryMethod" />
         <module name="noFactory" />
         <module name="prototypePattern" />
+        <module name="proxyPattern" />
         <module name="builderPatternTwo" />
         <module name="simpleFactory" />
         <module name="abstractFactory" />
@@ -18,5 +19,13 @@
         <module name="builderPatternOne" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="staticProxy" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="proxyPattern" options="" />
+    </option>
   </component>
 </project>

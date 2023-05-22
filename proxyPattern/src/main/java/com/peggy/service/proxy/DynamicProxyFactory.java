@@ -1,7 +1,5 @@
 package com.peggy.service.proxy;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
@@ -12,17 +10,19 @@ import java.lang.reflect.Proxy;
  * @Description: 代理工厂-动态生成代理对象
  */
 
-public class ProxyFactory {
+public class DynamicProxyFactory {
     private Object target;  //代理目标对象
 
-    public ProxyFactory(Object target) {
+    public DynamicProxyFactory(Object target) {
         this.target = target;
     }
 
     //为了目标生成代理对象
     public Object getProxyInstance(){
         return Proxy.newProxyInstance(
+                //指定目标对象的类加载器
                 target.getClass().getClassLoader(),
+                //目录对象实现接口的类型
                 target.getClass().getInterfaces(),
 
                 /**

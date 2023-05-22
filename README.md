@@ -562,3 +562,150 @@ public static void main(String[] args) throws CloneNotSupportedException {
 - 动态代理
 
   动态代理是指在程序运行的时候动态生成，既就是再编译完成之后不会生产动态代理的类的 class 文件，而是在运行时动态类生成字节码文件加载到 JVM 当中
+
+![image-20230522200229950](https://peggy-note.oss-cn-hangzhou.aliyuncs.com/images/image-20230522200229950.png)
+
+> 开启事务
+> 保存数据
+> 提交事务
+
+#### 类是如何生成的
+
+Java 虚拟机当中类的加载主要分为以下五个阶段：
+
+加载、验证、准备、解析、初始化
+
+其中对于加载阶段需要完成三件事情：
+
+1. 通过类的全限定名获取定义此类的二进制字节流
+2. 将这个字节流代表的静态存储结构转化为方法区运行时的数据结构
+3. 在内存当中生成一个代表这个类的 java.lang.Class 对象，作为方法区这个类所有的数据库访问入口
+
+![image-20230522201742783](https://peggy-note.oss-cn-hangzhou.aliyuncs.com/images/image-20230522201742783.png)
+
+**运行时计算生成：**这种的场景多用于动态代理技术，在 java.lang.refelct.Proxy 类中，就是用了 ProxyGenerator.generate
+
+ProxyClass 来为特定接口生成形式为 `*$Proxy` 的代理类二进字节流
+
+![image-20230522203027010](https://peggy-note.oss-cn-hangzhou.aliyuncs.com/images/image-20230522203027010.png)
+
+所以动态加载其实就是，根据接口和目标对象，计算出代理类的字节码然后加载到 JVM 当中使用
+
+使用阿里巴巴下的 arthas 工具查看中间代理的类生成信息
+
+![image-20230522212525464](C:\Users\peggy\AppData\Roaming\Typora\typora-user-images\image-20230522212525464.png)
+
+~~~ java
+
+/*
+ * Decompiled with CFR.
+ *
+ * Could not load the following classes:
+ *  com.peggy.service.IUserDao
+ */
+package com.sun.proxy;
+
+import com.peggy.service.IUserDao;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.lang.reflect.UndeclaredThrowableException;
+
+public final class $Proxy0
+extends Proxy
+implements IUserDao {
+    private static Method m1;
+    private static Method m3;
+    private static Method m2;
+    private static Method m0;
+
+    public $Proxy0(InvocationHandler invocationHandler) {
+        super(invocationHandler);
+    }
+
+    public final boolean equals(Object object) {
+        try {
+            return (Boolean)this.h.invoke(this, m1, new Object[]{object});
+        }
+        catch (Error | RuntimeException throwable) {
+            throw throwable;
+        }
+        catch (Throwable throwable) {
+            throw new UndeclaredThrowableException(throwable);
+        }
+    }
+
+    public final void save() {
+        try {
+            this.h.invoke(this, m3, null);
+            return;
+        }
+        catch (Error | RuntimeException throwable) {
+            throw throwable;
+        }
+        catch (Throwable throwable) {
+            throw new UndeclaredThrowableException(throwable);
+        }
+    }
+
+    public final String toString() {
+        try {
+            return (String)this.h.invoke(this, m2, null);
+        }
+        catch (Error | RuntimeException throwable) {
+            throw throwable;
+        }
+        catch (Throwable throwable) {
+            throw new UndeclaredThrowableException(throwable);
+        }
+    }
+
+    public final int hashCode() {
+        try {
+            return (Integer)this.h.invoke(this, m0, null);
+        }
+        catch (Error | RuntimeException throwable) {
+            throw throwable;
+        }
+        catch (Throwable throwable) {
+            throw new UndeclaredThrowableException(throwable);
+        }
+    }
+
+    static {
+        try {
+            m1 = Class.forName("java.lang.Object").getMethod("equals", Class.forName("java.lang.Object"));
+            m3 = Class.forName("com.peggy.service.IUserDao").getMethod("save", new Class[0]);
+            m2 = Class.forName("java.lang.Object").getMethod("toString", new Class[0]);
+            m0 = Class.forName("java.lang.Object").getMethod("hashCode", new Class[0]);
+            return;
+        }
+        catch (NoSuchMethodException noSuchMethodException) {
+            throw new NoSuchMethodError(noSuchMethodException.getMessage());
+        }
+        catch (ClassNotFoundException classNotFoundException) {
+            throw new NoClassDefFoundError(classNotFoundException.getMessage());
+        }
+    }
+}
+~~~
+
+- 动态代理类对象 继承了 Proxy 类，并且实现了被代理的所有接口，以及equals、hashCode、toString等方法
+- 代理类的构造函数，参数是 InvocationHandler 实例，Proxy.newInstance 方法就是通过这个构造函数来创建代理实例的
+- 类和所有方法都被 public final 修饰，所以代理类只可被使用，不可以再被继承
+- 每个方法都有一个 Method 对象来描述，Method 对象在static静态代码块中创建，以 m + 数字 的格式命名
+- 调用方法的时候通过 this.h.invoke(this, m3, null)); 实际上h.invoke就是在调用ProxyFactory中我们重写的invoke方法  
+
+~~~ java
+@Override
+public Object invoke(Object proxy, Method method, Object[]args) throws Throwable {
+    System.out.println("开启事务");
+    //执行目标对象方法
+    method.invoke(target, args);
+    System.out.println("提交事务");
+    return null;
+}
+~~~
+
+### cglib动态代理  
+
