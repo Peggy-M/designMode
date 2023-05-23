@@ -21,8 +21,12 @@ public class CglibClient {
         System.out.println(userService.getClass());
         //代理对象
         UserServiceImpl proxy = (UserServiceImpl) new UserLogProxy(userService).getLogProxy();
-        System.out.println(proxy.getClass());
-        List<User> userList = proxy.findUserList();
-        System.out.println("用户信息: "+userList);
+//        System.out.println(proxy.getClass());
+//        List<User> userList = proxy.findUserList();
+//        System.out.println("用户信息: "+userList);
+
+        System.out.println("=========================");
+        System.out.println(proxy.getUserName());
+        System.out.println("=========================");
     }
 }

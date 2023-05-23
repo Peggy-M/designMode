@@ -14,7 +14,10 @@ import java.util.List;
  */
 
 public class UserServiceImpl {
-    public List<User> findUserList(){
-        return Collections.singletonList(new User("tom",18));
+//    public List<User> findUserList(){
+//        return Collections.singletonList(new User("tom",18));
+//    }
+    public String getUserName(){
+        return "卡卡罗特";
     }
 }

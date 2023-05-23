@@ -15,6 +15,7 @@
         <module name="cglibProxyPattern" />
         <module name="simpleFactory" />
         <module name="abstractFactory" />
+        <module name="bridge" />
         <module name="internal-common-buider" />
         <module name="builderPatternOne" />
       </profile>
