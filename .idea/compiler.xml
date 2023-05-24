@@ -8,11 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="factoryMethod" />
+        <module name="FileReadAndWriteDome" />
         <module name="noFactory" />
         <module name="simpleFactory" />
         <module name="internal-common-buider" />
         <module name="internal-common" />
+        <module name="compositePattern" />
         <module name="abstractDome" />
+        <module name="decorativeDome" />
         <module name="proxyPattern" />
         <module name="builderPatternTwo" />
         <module name="cglibProxyPattern" />

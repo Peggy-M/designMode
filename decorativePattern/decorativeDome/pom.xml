@@ -3,20 +3,15 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.peggy</groupId>
-        <artifactId>designMode</artifactId>
+        <artifactId>decorativePattern</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>decorativePattern</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>decorativeDome</artifactId>
+    <packaging>jar</packaging>
 
-    <name>decorativePattern</name>
+    <name>decorativeDome</name>
     <url>http://maven.apache.org</url>
-    <modules>
-        <module>decorativeDome</module>
-        <module>abstractDome</module>
-        <module>FileReadAndWriteDome</module>
-    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

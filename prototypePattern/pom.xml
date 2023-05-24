@@ -15,7 +15,7 @@
   <url>http://maven.apache.org</url>
     <modules>
         <module>cglibProxyPattern</module>
-        <module>abstractDome</module>
+        <module>proxyPattern</module>
     </modules>
 
     <properties>

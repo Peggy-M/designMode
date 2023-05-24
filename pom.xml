@@ -22,6 +22,7 @@
         <module>bridgePattern/bridge</module>
         <module>bridgePattern</module>
         <module>decorativePattern</module>
+        <module>compositePattern</module>
     </modules>
 
     <properties>

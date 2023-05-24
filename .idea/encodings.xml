@@ -13,8 +13,14 @@
     <file url="file://$PROJECT_DIR$/builderPattern/internal-common-buider/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/builderPattern/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/builderPattern/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/compositePattern/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/compositePattern/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/decorativePattern/FileReadAndWriteDome/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/decorativePattern/FileReadAndWriteDome/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/decorativePattern/abstractDome/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/decorativePattern/abstractDome/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/decorativePattern/decorativeDome/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/decorativePattern/decorativeDome/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/decorativePattern/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/decorativePattern/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/factoryPattern/abstractFactory/src/main/java" charset="UTF-8" />
